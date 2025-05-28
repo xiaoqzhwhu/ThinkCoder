@@ -12,9 +12,9 @@ import copy
 import re
 logging.getLogger().setLevel(logging.ERROR)
 from functools import partial
-from request_kimi import *
+from request_api import *
 
-from models.llama import LlamaInterface
+from llama import LlamaInterface
 
 from datetime import datetime
 from executors import executor_factory
@@ -114,7 +114,7 @@ def prepare_aggregate_prompt(dataset, verification_outs):
 def format_step(step: str) -> str:
     return step.strip('\n').strip().replace('\n', '')
 
-def kimis(prompts, temperature):
+def apis(prompts, temperature):
     batch_results = {}
     results = []
     batches = []
@@ -219,10 +219,10 @@ def extract_task(response):
     return response, response_case
 
 
-def run(dataset, gpts, evaluate=True, outfilename=None, do_sample=True):
+def run(dataset, gpts, planing_budget, verification_budget, evaluate=True, outfilename=None, do_sample=True):
 
-    planing_budget = 5
-    verification_budget = 5
+    # planing_budget = 5
+    # verification_budget = 5
     # execution_feedback = []
     verification_results = []
     for _ in range(len(dataset)):
@@ -260,8 +260,11 @@ def run(dataset, gpts, evaluate=True, outfilename=None, do_sample=True):
         gt_feedback = []
         for _iter in range(planing_budget):
             time1 = int(time.time()*1000)
-            planing = kimis(prompts, temperature=temperature)
-            # planing = gpts(prompts, temperature=temperature)
+            planing = None
+            if gpts is not None:
+                planing = gpts(prompts, temperature=temperature)
+            else:
+                planing = apis(prompts, temperature=temperature)
             response = copy.deepcopy(planing)
             time2 = int(time.time()*1000)
             print("DEBUG TIME of Single Planing: %s" % (time2-time1))
@@ -385,10 +388,13 @@ def parse_args():
     args.add_argument('--random', action='store_true')
 
     args.add_argument('--modelname', type=str, default='gpt')
-    args.add_argument('--modelpath', type=str, default='../models/CodeQwen1.5-7B-Chat/')
+    args.add_argument('--modelpath', type=str, default='../../../models/CodeQwen1.5-7B-Chat/')
     args.add_argument('--peftpath', type=str, default='')
     args.add_argument('--do_sample', action='store_false')
     args.add_argument('--seed', type=int, default=-1)
+
+    args.add_argument('--n', type=int, default=2)
+    args.add_argument('--k', type=int, default=2)
 
     args = args.parse_args()
     return args
@@ -426,5 +432,5 @@ if __name__ == '__main__':
         print(args.modelpath, args.peftpath, args.add_lora)
         llama = LlamaInterface(args.modelpath, args.peftpath, args.add_lora)
         model = llama.generate_responses_from_llama
-    run(dataset, model, outfilename=outfilename, evaluate=args.evaluate, \
+    run(dataset, model, args.k, args.n, outfilename=outfilename, evaluate=args.evaluate, \
                     do_sample=args.do_sample)

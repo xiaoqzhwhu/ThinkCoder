@@ -1,0 +1,1 @@
+python test.py --modelname gpt --task_path ../data/human-eval/humaneval.test.jsonl --modelpath ../../../models/CodeQwen1.5-7B-Chat/ --modelname codeqwen
