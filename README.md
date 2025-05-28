@@ -47,7 +47,7 @@ git clone git@github.com:xiaoqzhwhu/ThinkCoder.git && cd ThinkCoder/bin/;
 
 pip install -r requirements;
 
-2、Run the ThinkCoder framework for code generation and evaluation. You can configure arguments such as `modelname`, `modelpath`, `task_path`, and others in the `evaluate.sh`. The LiveCode dataset is relatively large, so please download it from [here](#https://drive.google.com/file/d/1bQr-G29ZkW2RZ9I7VFm30MU7QC-43-gs/view?usp=drive_link).
+2、Run the ThinkCoder framework for code generation and evaluation. You can configure arguments such as `modelname`, `modelpath`, `task_path`, and others in the `evaluate.sh`. The LiveCode dataset is relatively large, so please download it from [here](https://drive.google.com/file/d/1bQr-G29ZkW2RZ9I7VFm30MU7QC-43-gs/view?usp=drive_link).
 
 
 sh evaluate.sh;
