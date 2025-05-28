@@ -9,13 +9,7 @@ import threading
 import queue
 
 
-# # api config
-# model_name = "set your model_name"
-# openai.api_type = "open_ai"
-# openai.api_base = "https://%s.app.msh.team/v1" % model_name
-# openai.api_version=""
-# openai.api_key = "set your api_key"
-
+# api config
 model_name = "gpt-3.5-turbo"
 openai.api_type = "open_ai"
 openai.api_base = "set your api_base"
