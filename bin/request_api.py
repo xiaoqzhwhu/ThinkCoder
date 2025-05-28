@@ -18,9 +18,9 @@ import queue
 
 model_name = "gpt-3.5-turbo"
 openai.api_type = "open_ai"
-openai.api_base = "https://openai.app.msh.team/v1"
+openai.api_base = "set your api_base"
 openai.api_version=""
-openai.api_key = "sk-diFuDMtbhZ29oe4TMhYqn3r7UXxy8KkK8lw7vZQQ3EqpOXGP"
+openai.api_key = "set your api_key"
 
 @retry(stop_max_attempt_number=3, wait_fixed=1000)
 # def get_response(data, result_queue, model=model_name):
