@@ -1,19 +1,19 @@
 # ThinkCoder: Thinking Before Running! Efficient Code Generation with Thorough Exploration and Optimal Refinement
 
 
-- [Abstract](#Abstract)
+## Abstract
 
 Code generation is crucial in software engineering for automating the coding process efficiently. While test-time computation methods show promise, they suffer from high latency due to multiple computation rounds. To overcome this, we introduce ThinkCoder, a framework that combines thorough exploration with optimal refinement. The exploration phase diversifies the solution space by searching for potential solutions, followed by a refinement phase that enhances precision. This approach allows us to select the best solution through careful consideration before taking action, avoiding excessive trial and error. To further minimize test-time computation overhead, we introduce preference-driven optimization with Reinforced Self-Training (ReST), which uses exploration trajectories from ThinkCoder to guide LLM's evolution. This approach enhances LLM's exploration efficiency via preference learning, cutting costs while maintaining accuracy. ThinkCoder boosts the performance with a single LLM, excelling on benchmarks like HumanEval and MBPP. Compared to SOTA models, it improves Pass@1 by 3.0% over MapCoder with just 6.4\% of the computation cost. Against AgentCoder, ThinkCoder achieves a 0.5% higher Pass@1 after 2 rounds, outperforming AgentCoder's 5 rounds. Additionally, ReST with success trajectories enhances efficiency, allowing models like LLaMA2-7B to achieve competitive results using only 20% of the computational resources. These results highlight the framework's effectiveness and scalability. 
 
-- [ThinkCoder Overview](#ThinkCoder)
+## ThinkCoder Overview
 
 ![alt text](images/thinkcoder.png)
 
-- [Preference-driven Optimization](#Preference)
+## Preference-driven Optimization
 
 ![alt text](images/rest.png)
 
-- [Results](#Results)
+## Results
 
 ![alt text](images/result1.png)
 
@@ -39,7 +39,7 @@ Table 5. The token usage for agent responses and the required refinement iterati
 
 Table 6. Performance comparison of the LLama2-7B model under different settings: baseline without fine-tuning, supervised fine-tuning (SFT) with original train dataset, and Reinforced Self-Training (ReST) with success trajectories from ThinkCoder on the MBPP dataset.
 
-- [Running our project](#Runing)
+## Running our project
 
 1、 Clone the project and create a new conda and install the requirements.
 
